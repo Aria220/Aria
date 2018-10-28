@@ -25,7 +25,7 @@
 		base-package="com.yixutech.library.controller"/>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 视图名与具体的视图组件的对应组件 -->
-		<property name="prefix" value="/web/"/>
+		<property name="prefix" value="/WEB-INF/web/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
@@ -39,10 +39,10 @@
 			<mvc:mapping path="/cart/**"/>
 			<mvc:mapping path="/order/**"/>
 			<!-- 白名单 -->
-			<mvc:exclude-mapping path="/user/reg.do"/>
-			<mvc:exclude-mapping path="/user/handle_reg.do"/>
-			<mvc:exclude-mapping path="/user/login.do"/>
-			<mvc:exclude-mapping path="/user/handle_login.do"/>
+			<mvc:exclude-mapping path="/user/reg"/>
+			<mvc:exclude-mapping path="/user/handle_reg"/>
+			<mvc:exclude-mapping path="/user/login"/>
+			<mvc:exclude-mapping path="/user/handle_login"/>
 			<!-- 配置拦截器-->
 			<bean class="com.yixutech.library.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>

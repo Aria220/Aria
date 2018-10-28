@@ -30,23 +30,29 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	
-	@RequestMapping("/reg.do")
+	@RequestMapping("/reg")
 	public String showReg() {
 		return "user_reg";
 	}
 
-	@RequestMapping("/login.do")
+	@RequestMapping("/login")
 	public String showLogin() {
 		return "user_login";
 	}
 	
-	@RequestMapping("/change_password.do")
+	@RequestMapping("/change_password")
 	public String showChangePassword() {
 		return "user_change_password";
 	}
 	
+	@RequestMapping("/index")
+	public String showIndex() {
+		return "index";
+	}
+	
+	
 	@ResponseBody
-	@RequestMapping(value="/handle_reg.do",method=RequestMethod.POST)
+	@RequestMapping(value="/handle_reg",method=RequestMethod.POST)
 	public ResponseResult<Void> handleLogin(@RequestParam("username")String username,@RequestParam("password")String password,String salt,String realname,String email,String phone,Integer gender,Date birthday){
 		ResponseResult<Void> rr;
 		boolean result = Validator.checkUsername(username);
@@ -71,14 +77,14 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/handle_login.do",method=RequestMethod.POST)
+	@RequestMapping(value="/handle_login",method=RequestMethod.POST)
 	public ResponseResult<Void> handleLogin(@RequestParam("username") String username,@RequestParam("password") String password, HttpSession session){
 		ResponseResult<Void> rr;
 		try {
-			User user = userService.findUserByUsername(username);
+			User user = userService.login(username, password);
 			session.setAttribute("id",user.getId());
 			session.setAttribute("username", user.getUsername());
-			rr = new ResponseResult<Void>(ResponseResult.STATE_OK);
+			rr = new ResponseResult<Void>(ResponseResult.STATE_OK,"index");
 		} catch (UserNotFoundException e) {
 			rr = new ResponseResult<Void>(-1, "用户未注册");
 		} catch (PasswordNotMatchException e) {

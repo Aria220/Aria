@@ -5,25 +5,30 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.dbcp2.BasicDataSource;
+
 import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yixutech.library.entity.User;
 import com.yixutech.library.mapper.UserMapper;
+import com.yixutech.library.service.IUserService;
+import com.yixutech.library.service.UserServiceImpl;
 
 
 
 public class UserMapperTest {
 	@Test
 	public void testInsert() throws ParseException{
-		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml");
+		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml","spring-service.xml");
 		UserMapper userMapper = ac.getBean("userMapper",UserMapper.class);
+		IUserService userService = ac.getBean("userService",IUserService.class);
+		String password = "123456";
+		String pwd = userService.getEncryptedPassword(password, "123");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String birthday = "1993-12-24";
+		String birthday = "1993-08-19";
 		Date now = sdf.parse(birthday);
-		User user = new User("fire","123456","123","gaolong","email@xx.com","18638483530",1,now);
+		User user = new User("cloud0072",pwd,"123","caolei","email@xx.com","18612345678",1,now);
 		Integer row = userMapper.insert(user);
 		System.out.println("row:"+row);
 		ac.close();
@@ -67,7 +72,6 @@ public class UserMapperTest {
 		Integer row = userMapper.delete(3L, "1");
 		System.out.println(row);
 		ac.close();
-		BasicDataSource a = new BasicDataSource();
 	}
 	
 	

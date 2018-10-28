@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -66,6 +67,7 @@ public class UserMapperTest {
 		Integer row = userMapper.delete(3L, "1");
 		System.out.println(row);
 		ac.close();
+		BasicDataSource a = new BasicDataSource();
 	}
 	
 	

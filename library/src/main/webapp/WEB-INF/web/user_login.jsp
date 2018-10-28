@@ -79,10 +79,11 @@
 			"type":"POST",
 			"dataType":"json",
 			"success":function(obj){
-				if(obj.state == 1){
-					alert("登录成功!")
-				} else {
-					alert("登录失败!"+obj.message);
+				if(obj.message){
+					alert(obj.message)
+				} 
+				if(obj.url){
+					location.href = obj.url;
 				}			
 			}
 		})

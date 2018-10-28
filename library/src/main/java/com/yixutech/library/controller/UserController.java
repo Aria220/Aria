@@ -1,17 +1,20 @@
 package com.yixutech.library.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.mysql.fabric.Response;
 import com.yixutech.library.entity.ResponseResult;
 import com.yixutech.library.entity.User;
 import com.yixutech.library.service.IUserService;
@@ -25,7 +28,7 @@ import com.yixutech.library.util.Validator;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseCotroller{
 	
 	@Autowired
 	private IUserService userService;
@@ -43,14 +46,8 @@ public class UserController {
 	@RequestMapping("/change_password")
 	public String showChangePassword() {
 		return "user_change_password";
-	}
-	
-	@RequestMapping("/index")
-	public String showIndex() {
-		return "index";
-	}
-	
-	
+	}	
+
 	@ResponseBody
 	@RequestMapping(value="/handle_reg",method=RequestMethod.POST)
 	public ResponseResult<Void> handleLogin(@RequestParam("username")String username,@RequestParam("password")String password,String salt,String realname,String email,String phone,Integer gender,Date birthday){
@@ -76,21 +73,40 @@ public class UserController {
 		return rr;
 	}
 	
+//	@ResponseBody
+//	@RequestMapping(value="/handle_login",method=RequestMethod.POST)
+//	public ResponseResult<Void> handleLogin(@RequestParam("username") String username,@RequestParam("password") String password, HttpSession session){
+//		ResponseResult<Void> rr;
+//		try {
+//			User user = userService.login(username, password);
+//			session.setAttribute("id",user.getId());
+//			session.setAttribute("username", user.getUsername());	
+//			rr = new ResponseResult<Void>(ResponseResult.STATE_OK);
+//		} catch (UserNotFoundException e) {
+//			rr = new ResponseResult<Void>(-1, "用户未注册");
+//		} catch (PasswordNotMatchException e) {
+//			rr = new ResponseResult<Void>(-2, "密码错误");
+//		}
+//		return rr;
+//	}
 	@ResponseBody
 	@RequestMapping(value="/handle_login",method=RequestMethod.POST)
-	public ResponseResult<Void> handleLogin(@RequestParam("username") String username,@RequestParam("password") String password, HttpSession session){
-		ResponseResult<Void> rr;
+	public ResponseEntity<Map<String,Object>> handLogin(@RequestParam("username") String username,@RequestParam("password") String password, HttpSession session) {
+		Map<String,Object> map = new HashMap<String, Object>();
 		try {
 			User user = userService.login(username, password);
 			session.setAttribute("id",user.getId());
-			session.setAttribute("username", user.getUsername());
-			rr = new ResponseResult<Void>(ResponseResult.STATE_OK,"index");
+			session.setAttribute("username", user.getUsername());	
+			String path = getContextPath();
+			System.out.println(path);
+			map.put("message", "登录成功");
+			map.put("url",path+"/main/index");
 		} catch (UserNotFoundException e) {
-			rr = new ResponseResult<Void>(-1, "用户未注册");
+			map.put("message", "用户不存在");
 		} catch (PasswordNotMatchException e) {
-			rr = new ResponseResult<Void>(-2, "密码错误");
+			map.put("message", "密码错误");
 		}
-		return rr;
+		return ResponseEntity.ok(map);
 	}
 	
 	

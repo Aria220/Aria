@@ -1,5 +1,7 @@
 package com.yixutech.library.mapper;
 
+import java.util.List;
+
 import com.yixutech.library.entity.Menu;
 
 public interface MenuMapper {
@@ -14,4 +16,10 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
+    
+    List<Menu> selectAll();
+
+    List<Menu> selectByParentId(Long parentId);
+
+    List<Menu> treeMenus();
 }

@@ -18,8 +18,9 @@
 	<select id="findUserByUsername"
 		resultType="com.yixutech.demo.entity.User">
 		SELECT
-			id,user_name,password,account_id,state,cancel,input_user,
-			input_time,update_user,update_time,remarks
+			id,user_name AS userName,password,account_id AS accoutId,state,
+			cancel,input_user AS inputUser,input_time AS inputUser,
+			update_user AS updateUser,update_time AS updateTime,remarks
 		FROM
 			user
 		WHERE
@@ -29,8 +30,9 @@
 	<select id="findUserById"
 		resultType="com.yixutech.demo.entity.User">
 		SELECT
-			id,user_name,password,account_id,state,cancel,input_user,
-			input_time,update_user,update_time,remarks
+			id,user_name AS userName,password,account_id AS accoutId,state,
+			cancel,input_user AS inputUser,input_time AS inputUser,
+			update_user AS updateUser,update_time AS updateTime,remarks
 		FROM
 			user
 		WHERE
@@ -39,8 +41,9 @@
 	<!-- 查询所有数据 -->
 	<select id="findAllUsers" resultType="com.yixutech.demo.entity.User">
 		SELECT
-			id,user_name,password,account_id,state,cancel,input_user,
-			input_time,update_user,update_time,remarks
+			id,user_name AS userName,password,account_id AS accoutId,state,
+			cancel,input_user AS inputUser,input_time AS inputUser,
+			update_user AS updateUser,update_time AS updateTime,remarks
 		FROM
 			user
 	</select>

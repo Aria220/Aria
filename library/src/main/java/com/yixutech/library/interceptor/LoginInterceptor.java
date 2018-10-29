@@ -17,11 +17,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 		//如果登录了,正常访问
 		//如果没登录.拦截,重定向到登录页
 		HttpSession session = request.getSession();
-		if(session.getAttribute("id")==null) {
+		if(session.getAttribute("uid")==null) {
 			//Session中没有登录的用户信息
 			//即:用户没有登录
 			//则:重定向到登录页
-			response.sendRedirect("../user/login.do");
+			response.sendRedirect("../user/login");
 			//拦截
 			return false;
 		} else {

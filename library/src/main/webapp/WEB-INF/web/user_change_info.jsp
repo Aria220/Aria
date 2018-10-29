@@ -74,10 +74,10 @@
 							<i class="linecons-cog"></i> <span class="title">个人资料设置</span>
 					</a>
 						<ul>
-							<li class="active"><a href="${ctx}/user/change_info"> <span
+							<li class="active"><a href="dashboard-1.html"> <span
 									class="title">修改个人信息</span>
 							</a></li>
-							<li><a href="${ctx}/user/change_password"> <span class="title">修改密码
+							<li><a href="dashboard-2.html"> <span class="title">修改密码
 										</span>
 							</a></li>
 							<li><a href="dashboard-3.html"> <span class="title">Dashboard

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.yixutech.demo.mapper.CurriculumVitaeMapper">
+	<!-- 增加用户数据 -->
+	<insert id="insert" parameterType="com.yixutech.demo.entity.CurriculumVitae" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO curriculum_vitae(
+			account_id, company, department, 
+      		position, hire_date, leave_date, 
+     		cancel, input_user, input_time, 
+     		update_user, update_time, remarks
+		) VALUES (
+			#{accountId}, #{company}, #{department}, 
+     		#{position}, #{hireDate}, #{leaveDate}, 
+      		#{cancel}, #{inputUser}, #{inputTime}, 
+     		#{updateUser}, #{updateTime}, #{remarks}
+		 )
+	</insert>
+	<!-- 根据id查找数据 -->
+	<select id="findCurriculumVitaeById"
+		resultType="com.yixutech.demo.entity.CurriculumVitae">
+		SELECT
+			id,account_id AS accountId, company, department, 
+      		position, hire_date AS hireDate, leave_date AS leaveDate, 
+     		cancel, input_user AS inputUser, input_time AS inputTime, 
+     		update_user AS updateUser, update_time AS updateTime, remarks
+		FROM
+			curriculum_vitae
+		WHERE
+			id=#{id}
+	</select>
+	<!-- 查询所有数据 -->
+	<select id="getCurriculumVitaeList" resultType="com.yixutech.demo.entity.CurriculumVitae">
+		SELECT
+			id,account_id AS accountId, company, department, 
+      		position, hire_date AS hireDate, leave_date AS leaveDate, 
+     		cancel, input_user AS inputUser, input_time AS inputTime, 
+     		update_user AS updateUser, update_time AS updateTime, remarks
+		FROM
+			curriculum_vitae
+	</select>
+	
+	<!-- 修改个人信息 -->
+	<!-- <update id="changeInfo">
+		UPDATE
+			t_user
+		SET
+			<if test="username!=null">
+			username=#{username},
+			</if>
+			gender=#{gender},
+			<if test="phone!=null">
+			phone=#{phone},
+			</if>	
+			<if test="email!=null">
+			email=#{email},
+			</if>
+	</update> -->
+	<!-- 删除数据 -->
+	<delete id="delete" parameterType="com.yixutech.demo.entity.CurriculumVitae">
+		DELETE From
+			curriculum_vitae
+		WHERE
+			id=#{id}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+

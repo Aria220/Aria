@@ -19,36 +19,33 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
-
-	<!-- 组件扫描 -->
-	<context:component-scan 
-		base-package="com.yixutech.library.controller"/>
-	<!-- 静态资源处理 -->
-	<mvc:default-servlet-handler/>
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<!-- 视图名与具体的视图组件的对应组件 -->
-		<property name="prefix" value="/WEB-INF/web/"/>
-		<property name="suffix" value=".jsp"/>
-	</bean>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	<!-- 注解驱动 -->
-	<mvc:annotation-driven/>
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<!-- 拦截路径 -->			
-			<mvc:mapping path="/user/**"/>
-			<mvc:mapping path="/address/**"/>
-			<mvc:mapping path="/cart/**"/>
-			<mvc:mapping path="/order/**"/>
-			<!-- 白名单 -->
-			<mvc:exclude-mapping path="/user/reg"/>
-			<mvc:exclude-mapping path="/user/handle_reg"/>
-			<mvc:exclude-mapping path="/user/login"/>
-			<mvc:exclude-mapping path="/user/handle_login"/>
-			<!-- 配置拦截器-->
-			<bean class="com.yixutech.library.interceptor.LoginInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<!-- 事物管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 定义接口文件位置 -->
+		<property name="basePackage" value="com.yixutech.demo.mapper"/>
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 定义XML映射文件的位置 -->
+		<property name="mapperLocations" value="classpath:mappers/*.xml"/>
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<!-- 数据源文件 -->
+	<util:properties id="dbConfig" location="classpath:jbdc.properties"/>
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url" value="#{dbConfig.url}"/>
+		<property name="driverClassName" value="#{dbConfig.driver}"/>
+		<property name="username" value="#{dbConfig.username}"/>
+		<property name="password" value="#{dbConfig.password}"/>
+		<property name="initialSize" value="#{dbConfig.initialSize}"/>
+		<property name="maxActive" value="#{dbConfig.maxActive}"/>
+	</bean>
 </beans>
 
 

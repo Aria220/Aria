@@ -1,4 +1,4 @@
-package com.yixutech.library.interceptor;
+package com.yixutech.demo.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?> 
-<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
-	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
 <mapper namespace="com.yixutech.demo.mapper.UserMapper">
-	<!-- 增加用户数据 -->
-	<insert id="insert" parameterType="com.yixutech.demo.entity.User" useGeneratedKeys="true" keyProperty="id">
+    <!-- 增加用户数据 -->
+    <insert id="insert" parameterType="com.yixutech.demo.entity.User" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO user(
 			user_name,password,account_id,state,cancel,input_user,
 			input_time,update_user,update_time,remarks
@@ -14,9 +14,9 @@
 			#{updateUser}, #{updateTime}, #{remarks}
 		 )
 	</insert>
-	<!-- 根据用户名查找用户数据 -->
-	<select id="findUserByUsername"
-		resultType="com.yixutech.demo.entity.User">
+    <!-- 根据用户名查找用户数据 -->
+    <select id="findUserByUsername"
+            resultType="com.yixutech.demo.entity.User">
 		SELECT
 			id,user_name,password,account_id,state,cancel,input_user,
 			input_time,update_user,update_time,remarks
@@ -25,9 +25,9 @@
 		WHERE
 			username=#{username}
 	</select>
-	<!-- 根据id查找用户数据 -->
-	<select id="findUserById"
-		resultType="com.yixutech.demo.entity.User">
+    <!-- 根据id查找用户数据 -->
+    <select id="findUserById"
+            resultType="com.yixutech.demo.entity.User">
 		SELECT
 			id,user_name,password,account_id,state,cancel,input_user,
 			input_time,update_user,update_time,remarks
@@ -36,16 +36,16 @@
 		WHERE
 			id=#{id}
 	</select>
-	<!-- 查询所有数据 -->
-	<select id="findAllUsers" resultType="com.yixutech.demo.entity.User">
+    <!-- 查询所有数据 -->
+    <select id="findAllUsers" resultType="com.yixutech.demo.entity.User">
 		SELECT
 			id,user_name,password,account_id,state,cancel,input_user,
 			input_time,update_user,update_time,remarks
 		FROM
 			user
 	</select>
-	<!-- 修改密码 -->
-	<update id="changePassword" parameterType="com.yixutech.demo.entity.User">
+    <!-- 修改密码 -->
+    <update id="changePassword" parameterType="com.yixutech.demo.entity.User">
 		UPDATE
 			user
 		SET
@@ -53,24 +53,24 @@
 		WHERE
 			id=#{id}
 	</update>
-	<!-- 修改个人信息 -->
-	<!-- <update id="changeInfo">
-		UPDATE
-			t_user
-		SET
-			<if test="username!=null">
-			username=#{username},
-			</if>
-			gender=#{gender},
-			<if test="phone!=null">
-			phone=#{phone},
-			</if>	
-			<if test="email!=null">
-			email=#{email},
-			</if>
-	</update> -->
-	<!-- 删除数据 -->
-	<delete id="delete" parameterType="com.yixutech.demo.entity.User">
+    <!-- 修改个人信息 -->
+    <!-- <update id="changeInfo">
+        UPDATE
+            t_user
+        SET
+            <if test="username!=null">
+            username=#{username},
+            </if>
+            gender=#{gender},
+            <if test="phone!=null">
+            phone=#{phone},
+            </if>
+            <if test="email!=null">
+            email=#{email},
+            </if>
+    </update> -->
+    <!-- 删除数据 -->
+    <delete id="delete" parameterType="com.yixutech.demo.entity.User">
 		DELETE From
 			user
 		WHERE

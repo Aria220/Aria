@@ -2,10 +2,12 @@ package com.yixutech.demo.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.yixutech.demo.entity.User;
 
+@Mapper
 public interface UserMapper {
 	/**
 	 * 插入用户数据

@@ -1,10 +1,9 @@
 package mapperTest;
 
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 
 import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -13,8 +12,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.yixutech.demo.entity.User;
 import com.yixutech.demo.mapper.UserMapper;
 import com.yixutech.demo.service.IUserService;
-
-
 
 public class UserMapperTest {
 	@Test
@@ -34,7 +31,7 @@ public class UserMapperTest {
 	public void testFindUserByUsername(){
 		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml");
 		UserMapper userMapper = ac.getBean("userMapper",UserMapper.class);
-		User user = userMapper.findUserByUsername("fire");
+		User user = userMapper.findUserByUsername("cloudoo72");
 		System.out.println(user);
 		ac.close();
 	}
@@ -42,7 +39,7 @@ public class UserMapperTest {
 	public void testFindUserById(){
 		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml");
 		UserMapper userMapper = ac.getBean("userMapper",UserMapper.class);
-		User user = userMapper.findUserById(3L);
+		User user = userMapper.findUserById(4);
 		System.out.println(user);
 		ac.close();
 	}
@@ -58,7 +55,7 @@ public class UserMapperTest {
 	public void testChangePassword(){
 		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml");
 		UserMapper userMapper = ac.getBean("userMapper",UserMapper.class);
-		Integer row = userMapper.changePassword(1L, "123456");
+		Integer row = userMapper.changePassword(4, "12345678");
 		System.out.println(row);
 		ac.close();
 	}
@@ -66,7 +63,7 @@ public class UserMapperTest {
 	public void testDelete(){
 		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml");
 		UserMapper userMapper = ac.getBean("userMapper",UserMapper.class);
-		Integer row = userMapper.delete(3L, "1");
+		Integer row = userMapper.delete(3,"123");
 		System.out.println(row);
 		ac.close();
 	}

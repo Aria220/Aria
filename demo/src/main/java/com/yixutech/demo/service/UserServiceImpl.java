@@ -48,12 +48,12 @@ public class UserServiceImpl implements IUserService{
 
 	}
 
-	public Integer changePassword(Long id, String oldPassword, String newPassword) {
-		// TODO Auto-generated method stub
+	public Integer changePassword(Integer id, String oldPassword, String newPassword) {
+		
 		return null;
 	}
 
-	public User findUserById(Long id) {
+	public User findUserById(Integer id) {
 		return userMapper.findUserById(id);
 	}
 
@@ -65,6 +65,5 @@ public class UserServiceImpl implements IUserService{
 		password = DigestUtils.md5DigestAsHex(password.getBytes()).toUpperCase();
 		return password;
 	}
-
 
 }

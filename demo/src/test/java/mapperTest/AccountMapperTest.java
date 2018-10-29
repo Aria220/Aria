@@ -10,10 +10,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yixutech.demo.entity.Account;
-import com.yixutech.demo.entity.User;
 import com.yixutech.demo.mapper.AccountMapper;
 import com.yixutech.demo.mapper.UserMapper;
-import com.yixutech.demo.service.IUserService;
 
 
 
@@ -49,7 +47,7 @@ public class AccountMapperTest {
 	public void testDelete(){
 		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml");
 		UserMapper userMapper = ac.getBean("userMapper",UserMapper.class);
-		Integer row = userMapper.delete(3L, "1");
+		Integer row = userMapper.delete(3,"123");
 		System.out.println(row);
 		ac.close();
 	}

@@ -26,7 +26,7 @@ public interface UserMapper {
 	 * @param id
 	 * @return
 	 */
-	User findUserById(Long id);
+	User findUserById(Integer id);
 	/**
 	 * 查询所有用户数据
 	 * @return 用户数据
@@ -38,12 +38,12 @@ public interface UserMapper {
 	 * @param password
 	 * @return 行数
 	 */
-	Integer changePassword(@Param("id")Long id,@Param("password")String password);
+	Integer changePassword(@Param("id")Integer id,@Param("password")String password);
 	/**
 	 * 删除数据 需验证
 	 * @param id
 	 * @param password
 	 * @return
 	 */
-	Integer delete(@Param("id")Long id,@Param("password")String password);
+	Integer delete(@Param("id")Integer id,@Param("password")String password);
 }

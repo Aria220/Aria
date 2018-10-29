@@ -24,13 +24,13 @@ public interface IUserService {
 	 * @param newPassword
 	 * @return
 	 */
-	Integer changePassword(Long id,String oldPassword,String newPassword);
+	Integer changePassword(Integer id,String oldPassword,String newPassword);
 	/**
 	 * 通过id查找用户数据
 	 * @param id
 	 * @return
 	 */
-	User findUserById(Long id);
+	User findUserById(Integer id);
 	/**
 	 * 通过用户名查找用户数据
 	 * @param usernam

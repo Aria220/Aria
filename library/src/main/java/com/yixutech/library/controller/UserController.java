@@ -1,7 +1,10 @@
 package com.yixutech.library.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -47,55 +50,53 @@ public class UserController extends BaseCotroller{
 	public String showChangePassword() {
 		return "user_change_password";
 	}	
-
+	
+	@RequestMapping("/change_info")
+	public String showChangeInfo() {
+		return "user_change_info";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/handle_reg",method=RequestMethod.POST)
-	public ResponseResult<Void> handleLogin(@RequestParam("username")String username,@RequestParam("password")String password,String salt,String realname,String email,String phone,Integer gender,Date birthday){
-		ResponseResult<Void> rr;
+	public ResponseEntity<Map<String,Object>> handleReg(@RequestParam("username")String username,@RequestParam("password")String password,String salt,String realname,String email,String phone,Integer gender,String birthday,HttpSession session) {
+		Map<String,Object> map = new HashMap<String, Object>();
 		boolean result = Validator.checkUsername(username);
 		if (!result) {
-			rr = new ResponseResult<Void>(ResponseResult.STATE_ERR, "您输入的用户名格式有误!");
-			return rr;
+			map.put("message", "您输入的用户名格式有误!");
+			return ResponseEntity.ok(map);
 		}
 		result = Validator.checkPassword(password);
 		if (!result) {
-			rr = new ResponseResult<Void>(ResponseResult.STATE_ERR, "您输入的密码格式有误!");
-			return rr;
+			map.put("message",  "您输入的密码格式有误!");
+			return ResponseEntity.ok(map);
 		}
 		try {
-			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			User user = new User(username, password, salt, realname, email, phone, gender, birthday);
+			System.out.println(birthday);
+			Date birth = sdf.parse(birthday);
+			User user = new User(username, password, salt, realname, email, phone, gender, birth);
 			userService.reg(user);
-			rr = new ResponseResult<Void>(ResponseResult.STATE_OK);
+			session.setAttribute("uid",user.getId());
+			session.setAttribute("username", user.getUsername());
+			String path = getContextPath();		
+			map.put("message",  "注册成功!");
+			map.put("url", path+"/main/index");
 		} catch (UsernameConflictException e) {
-			rr = new ResponseResult<Void>(e);
+			map.put("message",  "注册失败,用户名已存在!");
+		} catch (ParseException e) {
+			map.put("message",  "日期错误!");
 		} 
-		return rr;
+		
+		return ResponseEntity.ok(map);
+		
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value="/handle_login",method=RequestMethod.POST)
-//	public ResponseResult<Void> handleLogin(@RequestParam("username") String username,@RequestParam("password") String password, HttpSession session){
-//		ResponseResult<Void> rr;
-//		try {
-//			User user = userService.login(username, password);
-//			session.setAttribute("id",user.getId());
-//			session.setAttribute("username", user.getUsername());	
-//			rr = new ResponseResult<Void>(ResponseResult.STATE_OK);
-//		} catch (UserNotFoundException e) {
-//			rr = new ResponseResult<Void>(-1, "用户未注册");
-//		} catch (PasswordNotMatchException e) {
-//			rr = new ResponseResult<Void>(-2, "密码错误");
-//		}
-//		return rr;
-//	}
 	@ResponseBody
 	@RequestMapping(value="/handle_login",method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> handLogin(@RequestParam("username") String username,@RequestParam("password") String password, HttpSession session) {
+	public ResponseEntity<Map<String,Object>> handleLogin(@RequestParam("username") String username,@RequestParam("password") String password, HttpSession session) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		try {
 			User user = userService.login(username, password);
-			session.setAttribute("id",user.getId());
+			session.setAttribute("uid",user.getId());
 			session.setAttribute("username", user.getUsername());	
 			String path = getContextPath();
 			System.out.println(path);
@@ -109,7 +110,11 @@ public class UserController extends BaseCotroller{
 		return ResponseEntity.ok(map);
 	}
 	
-	
+	private final String pattern = "yyyy-MM-dd";
+	private final SimpleDateFormat sdf = new SimpleDateFormat(pattern,Locale.CHINA);
+//	private String getDateString(Date date) {
+//		return sdf.format(date);
+//	}
 	
 	
 	

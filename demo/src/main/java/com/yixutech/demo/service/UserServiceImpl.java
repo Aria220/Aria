@@ -20,6 +20,7 @@ public class UserServiceImpl implements IUserService{
 	
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
 	private AccountMapper accountMapper;
 
 	public User reg(User user) {
@@ -27,7 +28,7 @@ public class UserServiceImpl implements IUserService{
 		if(data==null) {
 			String md5Password = getEncryptedPassword(user.getPassword());
 			user.setPassword(md5Password);
-			Account account = new Account(null, null, 1, "186xxxxxxxx", "xx@xx.com", "xx市", 2, 1, 1, user.getUserName(), new Date(),user.getUserName(), new Date(), "备注");
+			Account account = new Account("用户", "生日", 1, "186xxxxxxxx", "xx@xx.com", "xx市", 2, 1, 1, user.getUserName(), new Date(),user.getUserName(), new Date(), "备注");
 			user.setState(1);
 			user.setCancel(1);
 			user.setInputTime(new Date());

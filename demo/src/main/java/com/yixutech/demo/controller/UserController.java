@@ -86,8 +86,9 @@ public class UserController extends BaseController{
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
 			User user = userService.login(userName, password);
+			System.out.println(user);
 			session.setAttribute("uid",user.getId());
-			session.setAttribute("userName", user.getUserName());
+			session.setAttribute("userName", userName);
 			session.setAttribute("accountId", user.getAccountId());
 			String path = getContextPath();
 			map.put("message", "登录成功");

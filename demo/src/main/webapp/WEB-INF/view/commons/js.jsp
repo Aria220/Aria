@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="${ctx}/assets/css/xenon-skins.css">
 	<link rel="stylesheet" href="${ctx}/assets/css/custom.css">
 
-	<script src="${ctx}/assets/js/jquery-1.11.1.min.js"></script>
+	<script src="${ctx}/assets/js/jquery-3.3.1.min.js"></script>
 	<!-- Bottom Scripts -->
 	<script src="${ctx}/assets/js/bootstrap.min.js"></script>
 	<script src="${ctx}/assets/js/TweenMax.min.js"></script>
@@ -22,7 +22,6 @@
 	<script src="${ctx}/assets/js/xenon-toggles.js"></script>
 	<script src="${ctx}/assets/js/jquery-validate/jquery.validate.min.js"></script>
 	<script src="${ctx}/assets/js/toastr/toastr.min.js"></script>
-
 
 	<!-- JavaScripts initializations and stuff -->
 	<script src="${ctx}/assets/js/xenon-custom.js"></script>

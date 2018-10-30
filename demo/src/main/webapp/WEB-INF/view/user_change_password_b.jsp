@@ -14,9 +14,10 @@
 				<form method="post" role="form" id="login" >
 					
 					<div class="login-header">
-						
+						<a href="dashboard-1.html" class="logo">
+							<img src="assets/images/logo-white-bg@2x.png" alt="" width="80" />
 							<span>重置密码</span>
-						
+						</a>
 						
 						<p>Reset Password</p>
 					</div>
@@ -36,7 +37,7 @@
 					</div>
 					
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary  btn-block text-left" id="submit" style="width:65px;display:block;margin:0 auto">
+						<button type="submit" class="btn btn-primary  btn-block text-left" id="submit">
 							<i class="fa-lock"></i>
 							确定
 						</button>
@@ -48,61 +49,6 @@
 		</div>
 	</div>
 	<%@ include file="commons/js.jsp"%>
-	<script type="text/javascript">
-    $(document).ready(function () {
-        $("#login").validate({
-            rules: {
-                password: {
-                    required: true,
-                    rangelength: [5, 20]
-                },
-                pwd: {
-                    required: true,
-                    rangelength: [5, 20]
-                },
-                pword: {
-                    required: true,
-                    equalTo: "#pwd"
-                }
-            },
-            messages: {
-                password: {
-                    required: "请输入原密码",
-                    rangelength: $.validator.format("密码长度必须在 {0} 到 {1} 之间")
-                },
-                pwd: {
-                    required: "请输入原密码",
-                    rangelength: $.validator.format("密码长度必须在 {0} 到 {1} 之间")
-                },
-                pword: {
-                    required: "请再次输入密码",
-                    equalTo: "两次输入密码不一致"
-                }
-            },
-            // errorElement: "em",
-            /* 更改错误信息显示的位置 */
-            errorPlacement: function (error, element) {
-                // Add the `help-block` class to the error element
-                error.addClass("help-block");
-
-                if (element.prop("type") === "checkbox") {
-                    error.insertAfter(element.parent("label"));
-                } else {
-                    error.insertAfter(element);
-                }
-            },
-            highlight: function (element, errorClass, validClass) {
-                $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
-            },
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
-            }
-        })
-
-    });
-
-
-</script>
 	<script type="text/javascript">
 	$("#submit").click(function(){
 	  	var url = "handle_change_password";
@@ -119,7 +65,6 @@
 			"type":"POST",
 			"dataType":"json",
 			"success":function(obj){
-				console.log(obj.message);
 				if(obj.message){
 					alert(obj.message)
 				} 

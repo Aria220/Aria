@@ -22,7 +22,7 @@
 				<form method="post" role="form" id="login" class="login-form" >
 
 					<div class="login-header">
-						<a href="dashboard-1.html" class="logo"> <img
+						<a href="#" class="logo"> <img
 							src="${ctx}/assets/images/logo@2x.png" alt="" width="80" /> <span>reg
 								in</span>
 						</a>
@@ -42,44 +42,16 @@
 						<input type="password" class="form-control input-dark" name="password"
 							id="password" autocomplete="off" placeholder="请输入密码："/>
 					</div>
-					<!-- <div class="form-group">
+					<div class="form-group">
 						<label for="pwd">确认密码：</label> 
 						<input type="password" class="form-control input-dark" name="pwd"
 							id="pwd" autocomplete="off" placeholder="请再次输入密码："/>
 					</div>
 					<div class="form-group">
-						<label for="verification_code">验证码：</label> 
-						<input type="text" class="form-control input-dark" name="verification_code"
-							id="verification_code" autocomplete="off" placeholder="请输入验证码："/>
-					</div> -->
-					<!-- <div class="form-group">
-						<label for="realname">真实姓名：</label> 
-						<input type="text" class="form-control input-dark" name="realname"
-							id="realname" autocomplete="off" placeholder="请输入真实姓名："/>
-					</div>
-					<div class="form-group">
-						性别：
-						<input type="radio"  name="gender" id="man" value="1"/>
-						男
-						<input type="radio" name="gender" id="woman" value="0"/>
-						女
-							
-					</div>
-					<div class="form-group">
-						<label for="email">email：</label> 
-						<input type="text" class="form-control input-dark" name="email"
-							id="eamil" autocomplete="off" placeholder="请输入邮箱："/>
-					</div>
-					<div class="form-group">
-						<label for="phone">phone：</label> 
-						<input type="text" class="form-control input-dark" name="phone"
-							id="phone" autocomplete="off" placeholder="请输入手机号码："/>
-					</div>
-					<div class="form-group">
-						<label for="birthday">生日：</label> 
-						<input type="date" class="form-control input-dark" name="birthday"
-							id="birthday" autocomplete="off" />
-					</div> -->
+						<label for="verification-code">验证码：</label> 
+						<input type="text" class="form-control input-dark" name="verification-code"
+							id="verification-code" autocomplete="off" placeholder="请输入验证码："/>
+					</div> 			
 					
 					<div class="form-group">
 						<button type="button" class="btn btn-dark  btn-block text-left" id="submit">
@@ -101,6 +73,79 @@
 		</div>
 	
 	</div>
+	<%@ include file="commons/js.jsp"%>
+	<script type="text/javascript">
+	
+/* 	jQurey.validator.addMethod("isMoblie",function(value,element){
+		var length = value.length;
+		var mobile =/^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\d{8}$/;
+		return this.optional(element)||(length === 11 && mobile.test(value));
+	},"请填写正确的手机号码"); */
+	
+	jQurey.validator.addMethod("isUserName",function(value,element){
+		var length = value.length;
+		var regularUserName = /^[A-Za-z]{1}[A-Za-z0-9_]{5,15}$/;
+		return this.optional(element)||(regularUserName.test(value));
+	},"用户名只能包含英文字母、数字及“_”，必须以英文字母开头，区分大小写");
+	
+		$(document).ready(function(){
+			$("#login-form").validate({
+				rules:{
+					username:{
+						required:true,
+						isUserName:true
+					},
+					password:{
+						required:true,
+						rangelength:[6,20]					
+					},
+					pwd:{
+						required:true,
+						equalTo:"#password"
+					}
+				},
+				message:{
+					username:{
+						required:"请输入用户名"
+					},
+					password:{
+						required:"请输入密码",
+						rangelength:$.validator.format("密码长度必须在 {6} 到 {20} 之间")					
+					},
+					pwd:{
+						required:"请再次输入密码",
+						equalTo:"两次输入的密码不一致"
+					}
+				}
+			 	// errorElement: "em",
+	            /* 更改错误信息显示的位置 */
+	           /*  errorPlacement: function (error, element) {
+	                // Add the `help-block` class to the error element
+	                error.addClass("help-block");
+
+	                if (element.prop("type") === "checkbox") {
+	                    error.insertAfter(element.parent("label"));
+	                } else {
+	                    error.insertAfter(element);
+	                }
+	            },
+	            highlight: function (element, errorClass, validClass) {
+	                $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+	            },
+	            unhighlight: function (element, errorClass, validClass) {
+	                $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+	            }  */
+				
+				
+			})
+		})
+				
+		
+		
+		
+		
+	
+	</script>
 	<script type="text/javascript">
 	$("#submit").click(function(){
 	  	var url = "handle_reg";
@@ -130,6 +175,6 @@
     });
 	
 	</script>
-	<%@ include file="commons/js.jsp"%>
+	
 </body>
 </html>

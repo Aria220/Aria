@@ -278,7 +278,7 @@
                     <img src="${ctx}/assets/images/user-4.png" alt="user-image"
                          class="img-circle img-inline userpic-32" width="28"/>
                    <span>
-                           ${user.userName}<i class="fa-angle-down"></i>
+                           ${userName}<i class="fa-angle-down"></i>
                     </span> 
                 </a>
 

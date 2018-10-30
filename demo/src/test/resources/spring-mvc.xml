@@ -44,6 +44,7 @@
 			
 			<!-- 白名单 -->
 			<mvc:exclude-mapping path="/user/reg"/>
+			<mvc:exclude-mapping path="/user/captcha"/>
 			<mvc:exclude-mapping path="/user/handle_reg"/>
 			<mvc:exclude-mapping path="/user/login"/>
 			<mvc:exclude-mapping path="/user/handle_login"/>

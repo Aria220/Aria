@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="${ctx}/assets/css/xenon-skins.css">
 	<link rel="stylesheet" href="${ctx}/assets/css/custom.css">
 
-	<script src="${ctx}/assets/js/jquery-1.11.1.min.js"></script>
+	<script src="${ctx}/assets/js/jquery-3.3.1.min.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>

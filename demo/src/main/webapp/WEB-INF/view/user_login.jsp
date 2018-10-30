@@ -53,7 +53,11 @@
 					<div class="login-footer">
 						<a href="${ctx}/user/reg">注册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a href="${ctx}/user/find_password">忘记密码？</a>
 					</div>
-
+					<div class="errors-container">
+						<c:if test="${error!=null}">
+							<p style="color:red;">${error}</p>
+						</c:if>
+					</div>
 				</form>
 
 				

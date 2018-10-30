@@ -1,8 +1,13 @@
 package com.yixutech.demo.controller;
 
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.code.kaptcha.Constants;
+import com.google.code.kaptcha.Producer;
 import com.yixutech.demo.entity.User;
 import com.yixutech.demo.service.IUserService;
 import com.yixutech.demo.service.exception.PasswordNotMatchException;
@@ -29,6 +36,9 @@ public class UserController extends BaseController{
 	
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private Producer captchaProducer;
 	
 	@RequestMapping("/reg")
 	public String showReg() {
@@ -95,9 +105,9 @@ public class UserController extends BaseController{
 			map.put("url", path+"/main/index");
 			System.out.println(path+"/main/index");
 		} catch (UserNotFoundException e) {
-			map.put("message", "用户未注册");
+			map.put("error", "用户未注册");
 		} catch (PasswordNotMatchException e) {
-			map.put("message", "密码错误");
+			map.put("error", "密码错误");
 		}
 		return ResponseEntity.ok(map);
 	}
@@ -119,6 +129,34 @@ public class UserController extends BaseController{
 		return ResponseEntity.ok(map);
 	}
 	
+	/**
+	 * 生成验证码
+	 *
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/captcha")
+	public void kaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	    HttpSession session = request.getSession();
+	    response.setDateHeader("Expires", 0);
+	    response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+	    response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setContentType("image/jpeg");
+	    //生成验证码
+	    String capText = captchaProducer.createText();
+	    session.setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+	    //向客户端写出
+	    BufferedImage bi = captchaProducer.createImage(capText);
+	    ServletOutputStream out = response.getOutputStream();
+	    ImageIO.write(bi, "jpg", out);
+	    try {
+	        out.flush();
+	    } finally {
+	        out.close();
+	    }
+	}
 	
 	
 	

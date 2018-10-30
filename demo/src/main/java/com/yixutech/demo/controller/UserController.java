@@ -136,7 +136,7 @@ public class UserController extends BaseController{
 	 * @param response
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/captcha")
+	@RequestMapping("/captcha")
 	public void kaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	    HttpSession session = request.getSession();
 	    response.setDateHeader("Expires", 0);

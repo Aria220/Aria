@@ -45,10 +45,12 @@
 			
 			<!-- 白名单 -->
 			<mvc:exclude-mapping path="/admin/reg"/>
+			<mvc:exclude-mapping path="/admin/captcha"/>
 			<mvc:exclude-mapping path="/admin/handle_reg"/>
 			<mvc:exclude-mapping path="/admin/login"/>
 			<mvc:exclude-mapping path="/admin/handle_login"/>
 			<mvc:exclude-mapping path="/user/reg"/>
+			<mvc:exclude-mapping path="/user/captcha"/>
 			<mvc:exclude-mapping path="/user/handle_reg"/>
 			<mvc:exclude-mapping path="/user/login"/>
 			<mvc:exclude-mapping path="/user/handle_login"/>

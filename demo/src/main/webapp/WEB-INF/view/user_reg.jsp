@@ -132,37 +132,45 @@
                  $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
              }  
         })
+		
+        /* $("body").keydown(function() {
+             if (event.keyCode == "13") {//keyCode=回车键
+                 $("#submit").click();
+             }
+         }) */
 
-        if($("#login").valid()){
         	$("#submit").click(function () {
-                var url = "handle_reg";
-                /* var formData = new FormData($("#login")[0]); */
-                var userName = $("#username").val();
-                var password = $("#password").val();
-                var data = "userName=" + userName + "&password=" + password;
-                //输出
-                console.log("提交的数据:" + data)
-                //提交ajax请求并处理结果
-                $.ajax({
-                    "url": url,
-                    "data": data,
-                    "type": "POST",
-                    "dataType": "json",
-                    /* "processData":false,
-                    "contentType":false, */
-                    "success": function (obj) {
-                        if (obj.message) {
-                            alert(obj.message)
-                        }
-                        if (obj.url) {
-                            location.href = obj.url;
-                        }
-                    }
-                })
+	        	if($("#login").valid()){
+	                var url = "handle_reg";
+	                /* var formData = new FormData($("#login")[0]); */
+	                var userName = $("#username").val();
+	                var password = $("#password").val();
+	                var data = "userName=" + userName + "&password=" + password;
+	                //输出
+	                console.log("提交的数据:" + data)
+	                //提交ajax请求并处理结果
+	                $.ajax({
+	                    "url": url,
+	                    "data": data,
+	                    "type": "POST",
+	                    "dataType": "json",
+	                    /* "processData":false,
+	                    "contentType":false, */
+	                    "success": function (obj) {
+	                        if (obj.message) {
+	                            alert(obj.message)
+	                        }
+	                        if (obj.url) {
+	                            location.href = obj.url;
+	                        }
+	                    }
+	                })
+	        	} else {
+	            	alert("请填入正确的信息!")
+	            }
             });
-        } else {
-        	alert("请填入正确的信息!")
-        }
+        	
+        
         
         
     });

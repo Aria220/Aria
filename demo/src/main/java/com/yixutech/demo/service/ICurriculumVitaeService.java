@@ -1,11 +1,10 @@
-package com.yixutech.demo.mapper;
+package com.yixutech.demo.service;
 
 import java.util.List;
 
 import com.yixutech.demo.entity.CurriculumVitae;
 
-public interface CurriculumVitaeMapper {
-
+public interface ICurriculumVitaeService {
 	Integer insert(CurriculumVitae curriculumVitae);
 
 	CurriculumVitae findCurriculumVitaeById(Integer id);

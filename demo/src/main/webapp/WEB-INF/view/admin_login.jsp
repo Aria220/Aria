@@ -28,7 +28,7 @@
 								in</span>
 						</a>
 
-						<p>Dear user, log in to access the admin area!</p>
+						<p>管理员登录</p>
 					</div>
 
 
@@ -50,9 +50,6 @@
 						</button>
 					</div>
 
-					<div class="login-footer">
-						<a href="${ctx}/user/reg">注册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a href="${ctx}/user/find_password">忘记密码？</a>
-					</div>
 
 				</form>
 
@@ -67,10 +64,10 @@
 	<script type="text/javascript">
 	$("#submit").click(function(){
 	  	var url = "handle_login";
-	  	var userName = $("#username").val();
+	  	var username = $("#username").val();
 	  	var password = $("#password").val();
 	  	//提交的数据
-	  	var data = "userName="+userName+"&password="+password;
+	  	var data = "userName="+username+"&password="+password;
 	  	//输出
 	  	console.log("提交的数据:"+data)
 		//提交ajax请求并处理结果

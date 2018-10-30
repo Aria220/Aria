@@ -15,7 +15,7 @@
 		 )
 	</insert>
 	<!-- 根据用户名查找用户数据 -->
-	<select id="findUserByUsername"
+	<select id="findUserByUserName"
 		resultType="com.yixutech.demo.entity.User">
 		SELECT
 			id,user_name AS userName,password,account_id AS accountId,state,
@@ -31,7 +31,7 @@
 		resultType="com.yixutech.demo.entity.User">
 		SELECT
 			id,user_name AS userName,password,account_id AS accountId,state,
-			cancel,input_user AS inputUser,input_time AS inputTime,
+			cancel,input_user AS inputUser,input_time AS inputUser,
 			update_user AS updateUser,update_time AS updateTime,remarks
 		FROM
 			user
@@ -42,7 +42,7 @@
 	<select id="findAllUsers" resultType="com.yixutech.demo.entity.User">
 		SELECT
 			id,user_name AS userName,password,account_id AS accountId,state,
-			cancel,input_user AS inputUser,input_time AS inputTime,
+			cancel,input_user AS inputUser,input_time AS inputUser,
 			update_user AS updateUser,update_time AS updateTime,remarks
 		FROM
 			user

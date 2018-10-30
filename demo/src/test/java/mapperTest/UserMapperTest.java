@@ -22,7 +22,7 @@ public class UserMapperTest {
 		String password = "123456";
 		String pwd = userService.getEncryptedPassword(password);
 		Date now = new Date();
-		User user = new User("cloudoo72","123456",1,1,1,"cloud0072",now,"cloud0072",now,"备注");
+		User user = new User("cloud0072","123456",1,1,1,"cloud0072",now,"cloud0072",now,"备注");
 		Integer row = userMapper.insert(user);
 		System.out.println("row:"+row);
 		ac.close();
@@ -31,7 +31,7 @@ public class UserMapperTest {
 	public void testFindUserByUsername(){
 		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml");
 		UserMapper userMapper = ac.getBean("userMapper",UserMapper.class);
-		User user = userMapper.findUserByUsername("cloudoo72");
+		User user = userMapper.findUserByUserName("cloud0072");
 		System.out.println(user);
 		ac.close();
 	}

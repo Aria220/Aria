@@ -17,7 +17,7 @@ public class BaseController {
 	protected String getContextPath() {
 	    return getRequest().getContextPath();
 	}
-	protected final Integer getIdFromSession(HttpSession session) {
+	protected final Integer getUidFromSession(HttpSession session) {
 		return Integer.valueOf(session.getAttribute("uid").toString());
 	}
 	

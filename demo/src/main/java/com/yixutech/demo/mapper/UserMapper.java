@@ -20,7 +20,7 @@ public interface UserMapper {
 	 * @param username
 	 * @return
 	 */
-	User findUserByUsername(String username);
+	User findUserByUserName(String userName);
 	/**
 	 * 通过id查找用户
 	 * @param id

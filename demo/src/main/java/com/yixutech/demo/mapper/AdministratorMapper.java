@@ -10,8 +10,11 @@ public interface AdministratorMapper {
 	Integer insert(Administrator account);
 
 	Administrator findAdministratorById(Integer id);
+	
 
 	List<Administrator> getAdministratorList();
 
 	Integer delete(Integer id);
+
+	Administrator findAdministratorByUserName(String userName);
 }

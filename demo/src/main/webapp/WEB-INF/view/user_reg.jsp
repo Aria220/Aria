@@ -42,7 +42,17 @@
 						<input type="password" class="form-control input-dark" name="password"
 							id="password" autocomplete="off" placeholder="请输入密码："/>
 					</div>
+					<!-- <div class="form-group">
+						<label for="pwd">确认密码：</label> 
+						<input type="password" class="form-control input-dark" name="pwd"
+							id="pwd" autocomplete="off" placeholder="请再次输入密码："/>
+					</div>
 					<div class="form-group">
+						<label for="verification_code">验证码：</label> 
+						<input type="text" class="form-control input-dark" name="verification_code"
+							id="verification_code" autocomplete="off" placeholder="请输入验证码："/>
+					</div> -->
+					<!-- <div class="form-group">
 						<label for="realname">真实姓名：</label> 
 						<input type="text" class="form-control input-dark" name="realname"
 							id="realname" autocomplete="off" placeholder="请输入真实姓名："/>
@@ -69,7 +79,7 @@
 						<label for="birthday">生日：</label> 
 						<input type="date" class="form-control input-dark" name="birthday"
 							id="birthday" autocomplete="off" />
-					</div>
+					</div> -->
 					
 					<div class="form-group">
 						<button type="button" class="btn btn-dark  btn-block text-left" id="submit">
@@ -78,7 +88,7 @@
 					</div>
 
 					<div class="login-footer">
-						<a href="#">返回登录</a>
+						<a href="#">已有账户,返回登录</a>
 					</div>
 
 				</form>
@@ -94,17 +104,20 @@
 	<script type="text/javascript">
 	$("#submit").click(function(){
 	  	var url = "handle_reg";
-	  	var formData = new FormData($("#login")[0]);
+	  	/* var formData = new FormData($("#login")[0]); */
+	  	var userName = $("#username").val();
+	  	var password = $("#password").val();
+	  	var data = "userName="+userName+"&password="+password;
 	  	//输出
-	  	console.log("提交的数据:"+formData)
+	  	console.log("提交的数据:"+data)
 		//提交ajax请求并处理结果
 		$.ajax({
 			"url":url,
-			"data":formData,
+			"data":data,
 			"type":"POST",
 			"dataType":"json",
-			"processData":false,
-			"contentType":false,
+			/* "processData":false,
+			"contentType":false, */
 			"success":function(obj){
 				if(obj.message){
 					alert(obj.message)

@@ -11,7 +11,7 @@ public class CurriculumVitae implements Serializable{
 	private Integer accountId;
 	private String company;
 	private String department;
-	private String positon;
+	private String position;
 	private Date hireDate;
 	private Date leaveDate;
 	private Integer cancel;
@@ -23,6 +23,25 @@ public class CurriculumVitae implements Serializable{
 	public CurriculumVitae() {
 		super();
 	}
+	
+	public CurriculumVitae(Integer accountId, String company, String department, String position, Date hireDate,
+			Date leaveDate, Integer cancel, String inputUser, Date inputTime, String updateUser, Date updateTime,
+			String remarks) {
+		super();
+		setAccountId(accountId);
+		setCompany(company);
+		setDepartment(department);
+		setPosition(position);
+		setHireDate(hireDate);
+		setLeaveDate(leaveDate);
+		setCancel(cancel);
+		setInputUser(inputUser);
+		setInputTime(inputTime);
+		setUpdateUser(updateUser);
+		setUpdateTime(updateTime);
+		setRemarks(remarks);
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -47,11 +66,11 @@ public class CurriculumVitae implements Serializable{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	public String getPositon() {
-		return positon;
+	public String getPosition() {
+		return position;
 	}
-	public void setPositon(String positon) {
-		this.positon = positon;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 	public Date getHireDate() {
 		return hireDate;
@@ -105,7 +124,7 @@ public class CurriculumVitae implements Serializable{
 	@Override
 	public String toString() {
 		return "CurriculumVitae [id=" + id + ", accountId=" + accountId + ", company=" + company + ", department="
-				+ department + ", positon=" + positon + ", hireDate=" + hireDate + ", leaveDate=" + leaveDate
+				+ department + ", positon=" + position + ", hireDate=" + hireDate + ", leaveDate=" + leaveDate
 				+ ", cancel=" + cancel + ", inputUser=" + inputUser + ", inputTime=" + inputTime + ", updateUser="
 				+ updateUser + ", updateTime=" + updateTime + ", remarks=" + remarks + "]";
 	}

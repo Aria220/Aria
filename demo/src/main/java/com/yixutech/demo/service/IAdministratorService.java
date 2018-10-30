@@ -1,22 +1,23 @@
 package com.yixutech.demo.service;
 
-import com.yixutech.demo.entity.User;
 
-public interface IUserService {
+import com.yixutech.demo.entity.Administrator;
+
+public interface IAdministratorService {
 	
 	/**
 	 * 用户注册
-	 * @param user
+	 * @param Administrator
 	 * @return
 	 */
-	User reg(User user);
+	Administrator reg(Administrator administrator);
 	/**
 	 * 用户登录
-	 * @param username
+	 * @param Administratorname
 	 * @param password
 	 * @return
 	 */
-	User login(String userName,String password);
+	Administrator login(String userName,String password);
 	/**
 	 * 修改密码
 	 * @param id 
@@ -30,13 +31,13 @@ public interface IUserService {
 	 * @param id
 	 * @return
 	 */
-	User findUserById(Integer id);
+	Administrator findAdministratorById(Integer id);
 	/**
 	 * 通过用户名查找用户数据
-	 * @param usernam
+	 * @param Administratornam
 	 * @return
 	 */
-	User findUserByUserName(String userName);
+	Administrator findAdministratorByUserName(String userName);
 	/**
 	 * 对密码加密
 	 * @param password

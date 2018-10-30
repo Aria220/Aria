@@ -35,7 +35,7 @@ public class Account implements Serializable {
 		setBirthday(birthday);
 		setGender(gender);
 		setMobileNumber(mobileNumber);
-		setEMail(eMail);
+		seteMail(eMail);
 		setAddress(address);
 		setEducation(education);
 		setState(state);
@@ -87,11 +87,11 @@ public class Account implements Serializable {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public String getEMail() {
+	public String geteMail() {
 		return eMail;
 	}
 
-	public void setEMail(String eMail) {
+	public void seteMail(String eMail) {
 		this.eMail = eMail;
 	}
 

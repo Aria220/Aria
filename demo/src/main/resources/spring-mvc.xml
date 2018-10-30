@@ -27,7 +27,7 @@
 	<mvc:default-servlet-handler/>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 视图名与具体的视图组件的对应组件 -->
-		<property name="prefix" value="/WEB-INF/web/"/>
+		<property name="prefix" value="/WEB-INF/view/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
@@ -41,8 +41,13 @@
 			<mvc:mapping path="/cart/**"/>
 			<mvc:mapping path="/order/**"/>
 			<mvc:mapping path="/main/**"/>
+			<mvc:mapping path="/admin/**"/>
 			
 			<!-- 白名单 -->
+			<mvc:exclude-mapping path="/admin/reg"/>
+			<mvc:exclude-mapping path="/admin/handle_reg"/>
+			<mvc:exclude-mapping path="/admin/login"/>
+			<mvc:exclude-mapping path="/admin/handle_login"/>
 			<mvc:exclude-mapping path="/user/reg"/>
 			<mvc:exclude-mapping path="/user/handle_reg"/>
 			<mvc:exclude-mapping path="/user/login"/>

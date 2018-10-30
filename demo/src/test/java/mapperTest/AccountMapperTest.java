@@ -20,7 +20,6 @@ public class AccountMapperTest {
 	public void testInsert() throws ParseException{
 		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml","spring-service.xml");
 		AccountMapper accountMapper = ac.getBean("accountMapper",AccountMapper.class);
-		
 		Date now = new Date();
 		Account account = new Account("cao","199312",1,"18612345678","xx@xx.com","xx路",2,1,1,"cloud0072",now,"cloud0072",now,"备注");
 		Integer row = accountMapper.insert(account);
@@ -28,7 +27,7 @@ public class AccountMapperTest {
 		ac.close();
 	}
 	@Test
-	public void testFindUserById(){
+	public void testFindAccountById(){
 		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml");
 		AccountMapper accountMapper = ac.getBean("accountMapper",AccountMapper.class);
 		Account account = accountMapper.findAccountById(1);

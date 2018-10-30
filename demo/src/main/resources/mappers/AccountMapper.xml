@@ -22,7 +22,7 @@
 		SELECT
 			id, real_name AS realName, birthday, gender, 
 			mobile_number AS mobileNumber, e_mail AS eMail, address,
-			education, state, cancel, input_user, input_time,
+			education, state, cancel, input_user AS inputUser, input_time AS inputTime,
 			update_user AS updateUser, update_time AS updateTime, remarks
 		FROM
 			account
@@ -34,7 +34,7 @@
 		SELECT
 			id, real_name AS realName, birthday, gender, 
 			mobile_number AS mobileNumber, e_mail AS eMail, address,
-			education, state, cancel, input_user, input_time,
+			education, state, cancel, input_user AS inputUser, input_time AS inputTime,
 			update_user AS updateUser, update_time AS updateTime, remarks
 		FROM
 			account

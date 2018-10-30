@@ -27,6 +27,19 @@
 		WHERE
 			id=#{id}
 	</select>
+	<!-- 根据用户名查找数据 -->
+	<select id="findAdministratorByUserName"
+		resultType="com.yixutech.demo.entity.Administrator">
+		SELECT
+			id,user_name AS userName, password, authority,cancel, 
+			input_user AS inputUser, input_time AS inputTime, 
+      		update_user AS updateUser, update_time AS updateTime, remarks
+		FROM
+			administrator
+		WHERE
+			user_name=#{userName}
+	</select>
+	
 	<!-- 查询所有数据 -->
 	<select id="getAdministratorList" resultType="com.yixutech.demo.entity.Administrator">
 		SELECT

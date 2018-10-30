@@ -40,6 +40,19 @@
 		FROM
 			curriculum_vitae
 	</select>
+	<!-- 根据accountId查询数据 -->
+	<select id="getCurriculumVitaeListByAccountId" resultType="com.yixutech.demo.entity.CurriculumVitae">
+		SELECT
+			id,account_id AS accountId, company, department, 
+      		position, hire_date AS hireDate, leave_date AS leaveDate, 
+     		cancel, input_user AS inputUser, input_time AS inputTime, 
+     		update_user AS updateUser, update_time AS updateTime, remarks
+		FROM
+			curriculum_vitae
+		WHERE
+			account_id=#{accountId}
+	</select>
+	
 	
 	<!-- 修改个人信息 -->
 	<!-- <update id="changeInfo">

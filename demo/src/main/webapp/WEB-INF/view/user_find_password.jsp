@@ -28,31 +28,33 @@
 								in</span>
 						</a>
 
-						<p>Dear user, log in to access the admin area!</p>
+						<p>重置密码</p>
+						<hr>
+					<input type="radio" value="0" id="radio_phone" name="radio" checked="checked">使用手机号
+					<input type="radio" value="1" id="radio_email" name="radio" >使用邮箱
 					</div>
-
-
+					
+					
+					<c:if test=""></c:if>
 					<div class="form-group">
-						<label for="username">用户名：</label> 
-						<input type="text" class="form-control input-dark" name="username"
-							id="username" autocomplete="off" placeholder="请输入用户名：" readonly="readonly" onmouseover="this.readOnly=false"/>
-					</div>
-
-					<div class="form-group">
-						<label for="password">密码：</label> 
-						<input type="password" class="form-control input-dark" name="password"
-							id="password" autocomplete="off" placeholder="请输入密码：" readonly="readonly" onmouseover="this.readOnly=false"/>
+						<label for="phone">手机号码：</label> 
+						<input type="text" class="form-control input-dark" name="phone"
+							id="phone" autocomplete="off" placeholder="请输入手机号码：" readonly="readonly" onmouseover="this.readOnly=false"/>
 					</div>
 
 					<div class="form-group">
-						<button type="button" class="btn btn-dark  btn-block text-left" id="submit">
-							<i class="fa-lock"></i> 登录
+						<label for="password">验证码：</label> 
+						<input type="text" class="form-control input-dark" name="code"
+							id="code" autocomplete="off" placeholder="请输入密码：" readonly="readonly" onmouseover="this.readOnly=false"/>
+					</div>
+
+					<div class="form-group">
+						<button type="button" class="btn btn-dark  btn-block text-left" id="next">
+							<i class="fa-lock"></i> 下一步
 						</button>
 					</div>
 
-					<div class="login-footer">
-						<a href="${ctx}/user/reg">注册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a href="${ctx}/user/find_password">忘记密码？</a>
-					</div>
+				
 
 				</form>
 

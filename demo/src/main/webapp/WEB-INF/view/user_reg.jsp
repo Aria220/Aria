@@ -47,7 +47,7 @@
                            id="pwd" autocomplete="off" placeholder="请再次输入密码："/>
                 </div>
                 <div class="form-group">
-					<%--<p>验证码:</p>--%>
+					<label for="captcha">验证码：</label>
 					<input type="text" class="form-control input-dark" name="captcha"
 						   id="captcha" autocomplete="off" placeholder="验证码"/>
 				</div>
@@ -83,35 +83,52 @@
             var regularUserName = /^[A-Za-z][A-Za-z0-9_]{5,15}$/;
             return this.optional(element) || (regularUserName.test(value));
         }, "用户名只能包含英文字母、数字及“_”，必须以英文字母开头，区分大小写");
-
+		
+        jQuery.validator.addMethod("isPassword", function (value, element) {
+            var length = value.length;
+            var regularPassword = /^[A-Z][A-Za-z0-9]{6,18}$/;
+            return this.optional(element) || (regularPassword.test(value));
+        }, "密码只能包含英文字母及数字，必须以大写的英文字母开头，区分大小写");
+        
         $("#login").validate({
             rules: {
                 username: {
                     required: true,
+                    rangelength: [5, 15],
                     isUserName: true
                 },
                 password: {
                     required: true,
-                    rangelength: [6, 20]
+                    rangelength: [6, 18],
+                    isPassword: true
                 },
                 pwd: {
                     required: true,
                     equalTo: "#password"
+                },
+                captcha: {
+                	required: true
                 }
             },
             messages: {
                 username: {
                     required: "请输入用户名",
+                    rangelength: $.validator.format("用户名长度必须在 {0} 到 {1} 之间"),
                     isUserName:"用户名只能包含英文字母、数字及“_”，必须以英文字母开头，区分大小写"
                 },
                 password: {
                     required: "请输入密码",
-                    rangelength: $.validator.format("密码长度必须在 {0} 到 {1} 之间")
+                    rangelength: $.validator.format("密码长度必须在 {0} 到 {1} 之间"),
+                    isPassword: "密码只能包含英文字母及数字，必须以大写的英文字母开头，区分大小写"
                 },
                 pwd: {
                     required: "请再次输入密码",
                     equalTo: "两次输入的密码不一致"
+                },
+                captcha: {
+                	required: "请输入验证码"
                 }
+                
             },
             errorElement: "em",
             /* 更改错误信息显示的位置 */
@@ -145,7 +162,8 @@
 	                /* var formData = new FormData($("#login")[0]); */
 	                var userName = $("#username").val();
 	                var password = $("#password").val();
-	                var data = "userName=" + userName + "&password=" + password;
+	                var captcha = $("#captcha").val();
+	                var data = "userName=" + userName + "&password=" + password+"&captcha="+captcha;
 	                //输出
 	                console.log("提交的数据:" + data)
 	                //提交ajax请求并处理结果

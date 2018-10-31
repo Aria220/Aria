@@ -25,6 +25,7 @@ import com.yixutech.demo.service.exception.UserNotFoundException;
 @Controller
 @RequestMapping("/admin")
 public class AdministratorController extends BaseController{
+	
 	@Autowired
 	private IAdministratorService administratorService;
 	
@@ -55,7 +56,7 @@ public class AdministratorController extends BaseController{
 			map.put("message", "登录成功");
 			map.put("url", path+"/main/admin_index");
 		} catch (UserNotFoundException e) {
-			map.put("message", "用户未注册");
+			map.put("message", "管理员不存在");
 		} catch (PasswordNotMatchException e) {
 			map.put("message", "密码错误");
 		}

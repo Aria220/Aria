@@ -15,4 +15,5 @@ public interface CurriculumVitaeMapper {
 	Integer delete(Integer id);
 	
 	List<CurriculumVitae> getCurriculumVitaeListByAccountId(Integer accountId);
+	
 }

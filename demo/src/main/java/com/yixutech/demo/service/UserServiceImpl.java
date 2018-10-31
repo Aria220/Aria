@@ -35,6 +35,7 @@ public class UserServiceImpl implements IUserService{
 			user.setInputUser(user.getUserName());
 			user.setUpdateTime(new Date());
 			user.setUpdateUser(user.getUserName());
+			user.setRemarks("备注");
 			accountMapper.insert(account);
 			Integer accountId = account.getId();
 			user.setAccountId(accountId);

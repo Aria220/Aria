@@ -50,6 +50,16 @@ public class AccountMapperTest {
 		System.out.println(row);
 		ac.close();
 	}
+	@Test
+	public void testChangeInfo(){
+		AbstractApplicationContext ac = new ClassPathXmlApplicationContext("spring-dao.xml");
+		AccountMapper accountMapper = ac.getBean("accountMapper",AccountMapper.class);
+		Account account = new Account("yang", "199206", 0, "18812345678", "33@xx.com", "xx市", 2, 1, 1, null, null, "concerto1", new Date(), "");
+		account.setId(2);
+		Integer row = accountMapper.changeInfo(account);
+		System.out.println(row);
+		ac.close();
+	}
 	
 	
 }

@@ -1,6 +1,7 @@
 package com.yixutech.demo.controller;
 
 import java.awt.image.BufferedImage;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.yixutech.demo.entity.Account;
 import com.yixutech.demo.entity.User;
+import com.yixutech.demo.service.IAccountService;
 import com.yixutech.demo.service.IUserService;
 import com.yixutech.demo.service.exception.PasswordNotMatchException;
 import com.yixutech.demo.service.exception.UserNotFoundException;
@@ -62,7 +65,7 @@ public class UserController extends BaseController{
 	
 	@ResponseBody
 	@RequestMapping(value="/handle_reg",method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> handleReg(@RequestParam("userName")String userName,@RequestParam("password")String password,HttpSession session){
+	public ResponseEntity<Map<String,Object>> handleReg(@RequestParam("userName")String userName,@RequestParam("password")String password,@RequestParam("captcha")String verificationCode,HttpSession session){
 		Map<String,Object> map = new HashMap<String,Object>();
 		boolean result = Validator.checkUsername(userName);
 		if (!result) {
@@ -74,13 +77,20 @@ public class UserController extends BaseController{
 			map.put("message", "您输入的密码格式有误!");
 			return ResponseEntity.ok(map);
 		}
+		String captcha =  (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+		if(!captcha.equals(verificationCode)) {
+			map.put("message", "您输入验证码有误!");
+			return ResponseEntity.ok(map);
+		}
 		try {
 			User user = new User();
 			user.setUserName(userName);
 			user.setPassword(password);
 			userService.reg(user);
+			System.out.println(user.getId());
 			session.setAttribute("uid",user.getId());
 			session.setAttribute("userName", user.getUserName());
+			session.setAttribute("accountId", user.getAccountId());
 			String path = getContextPath();
 			map.put("message", "注册成功！");
 			map.put("url", path+"/main/index");
@@ -101,13 +111,12 @@ public class UserController extends BaseController{
 			session.setAttribute("userName", userName);
 			session.setAttribute("accountId", user.getAccountId());
 			String path = getContextPath();
-			map.put("message", "登录成功");
 			map.put("url", path+"/main/index");
 			System.out.println(path+"/main/index");
 		} catch (UserNotFoundException e) {
-			map.put("error", "用户未注册");
+			map.put("message", "用户未注册");		
 		} catch (PasswordNotMatchException e) {
-			map.put("error", "密码错误");
+			map.put("message", "密码错误");
 		}
 		return ResponseEntity.ok(map);
 	}
@@ -120,9 +129,9 @@ public class UserController extends BaseController{
 			Integer uid = getUidFromSession(session);
 			userService.changePassword(uid, password, newPassword);
 			String path = getContextPath();
-			map.put("message", "修改成功");
-			map.put("url", path+"/main/index");
-			System.out.println(path+"/main/index");
+			map.put("message", "修改成功!请重新登录!");
+			map.put("url", path+"/user/login");
+			System.out.println(path+"/user/login");
 		} catch (PasswordNotMatchException e) {
 			map.put("message", "原密码错误");
 		} 
@@ -157,7 +166,6 @@ public class UserController extends BaseController{
 	        out.close();
 	    }
 	}
-	
 	
 	
 	

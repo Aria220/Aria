@@ -8,8 +8,9 @@
 					<!-- Add your copyright text here -->
 					<div class="footer-text">
 						 &copy; 2014 
-						<strong>Xenon</strong> 
-						More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+						<strong>Yixu</strong> 
+						Information management
+						 <a href="#" target="_blank" title="管理系统">管理系统</a> - Collect from <a href="#" title="Concerto" target="_blank">Concerto</a>
 					</div>
 					
 					

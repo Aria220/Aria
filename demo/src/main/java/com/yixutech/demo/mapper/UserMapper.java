@@ -46,4 +46,5 @@ public interface UserMapper {
 	 * @return
 	 */
 	Integer delete(@Param("id")Integer id,@Param("password")String password);
+	
 }

@@ -50,15 +50,22 @@
 	<%@ include file="commons/js.jsp"%>
 	<script type="text/javascript">
     $(document).ready(function () {
+    	jQuery.validator.addMethod("isPassword", function (value, element) {
+            var length = value.length;
+            var regularPassword = /^[A-Z][A-Za-z0-9]{6,18}$/;
+            return this.optional(element) || (regularPassword.test(value));
+        }, "密码只能包含英文字母及数字，必须以大写的英文字母开头，区分大小写");
+    	
         $("#login").validate({
             rules: {
                 password: {
                     required: true,
-                    rangelength: [5, 20]
+                    rangelength: [6, 18]
                 },
                 pwd: {
                     required: true,
-                    rangelength: [5, 20]
+                    rangelength: [6, 18],
+                	isPassword: true
                 },
                 pword: {
                     required: true,
@@ -72,7 +79,8 @@
                 },
                 pwd: {
                     required: "请输入原密码",
-                    rangelength: $.validator.format("密码长度必须在 {0} 到 {1} 之间")
+                    rangelength: $.validator.format("密码长度必须在 {0} 到 {1} 之间"),
+               		isPassWord: "密码只能包含英文字母及数字，必须以大写的英文字母开头，区分大小写"
                 },
                 pword: {
                     required: "请再次输入密码",

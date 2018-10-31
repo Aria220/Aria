@@ -16,8 +16,7 @@ public class CurriculumVitaeServiceImpl implements ICurriculumVitaeService{
 	
 	@Override
 	public Integer insert(CurriculumVitae curriculumVitae) {
-		// TODO Auto-generated method stub
-		return null;
+		return curriculumVitaeMapper.insert(curriculumVitae);
 	}
 
 	@Override

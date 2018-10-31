@@ -41,21 +41,37 @@
 	</select>
 	
 	<!-- 修改个人信息 -->
-	<!-- <update id="changeInfo">
+	<update id="changeInfo">
 		UPDATE
-			t_user
+			account
 		SET
-			<if test="username!=null">
-			username=#{username},
+			<if test="realName!=null">
+			real_name=#{realName},
 			</if>
-			gender=#{gender},
-			<if test="phone!=null">
-			phone=#{phone},
+			<if test="birthday!=null">
+			birthday=#{birthday},
 			</if>	
-			<if test="email!=null">
-			email=#{email},
+			gender=#{gender},
+			<if test="education!=null">
+			education=#{education},
 			</if>
-	</update> -->
+			<if test="address!=null">
+			address=#{address},
+			</if>
+			<if test="eMail!=null">
+			e_mail=#{eMail},
+			</if>
+			<if test="mobileNumber!=null">
+			mobile_number=#{mobileNumber},
+			</if>
+			update_user=#{updateUser},
+			update_time=#{updateTime}
+			<if test="remarks!=null">
+			,remarks=#{remarks}
+			</if>
+		WHERE 
+			id=#{id}
+	</update> 
 	<!-- 删除数据 -->
 	<delete id="delete" parameterType="com.yixutech.demo.entity.Account">
 		DELETE From

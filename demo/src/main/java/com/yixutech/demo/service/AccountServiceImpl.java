@@ -16,8 +16,7 @@ public class AccountServiceImpl implements IAccountService{
 
 	@Override
 	public Integer insert(Account account) {
-		// TODO Auto-generated method stub
-		return null;
+		return accountMapper.insert(account);
 	}
 
 	@Override
@@ -33,6 +32,11 @@ public class AccountServiceImpl implements IAccountService{
 	@Override
 	public Integer delete(Integer id) {
 		return accountMapper.delete(id);
+	}
+
+	@Override
+	public Integer changeInfo(Account account) {
+		return accountMapper.changeInfo(account);
 	}
 	
 }

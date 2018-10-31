@@ -5,6 +5,7 @@ import java.util.List;
 import com.yixutech.demo.entity.Account;
 
 public interface IAccountService {
+	
 	Integer insert(Account account);
 	
 	Account findAccountById(Integer id);
@@ -12,4 +13,6 @@ public interface IAccountService {
 	List<Account> getAccountList();
 	
 	Integer delete(Integer id);
+	
+	Integer changeInfo(Account account);
 }

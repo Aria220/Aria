@@ -286,13 +286,13 @@
                     <li>
                         <a href="${ctx}/main/index">
                             <i class="fa-wrench"></i>
-                           	个人设置
+                           	个人信息
                         </a>
                     </li>
                      <li>
                         <a href="${ctx}/user/change_password">
                             <i class="fa-edit"></i>
-                          	 重置密码
+                          	 修改密码
                         </a>
                     </li>
                     <li>
@@ -308,9 +308,9 @@
                         </a>
                     </li>
                     <li class="last">
-                        <a class="btn-logout" href="${ctx }/user/login" onclick=alert("退出成功!")>
+                        <a class="btn-logout" href="${ctx }/user/login" id="logout">
                             <i class="fa-lock"></i>
-                           	退出登录
+                           	退出
                         </a>
                     </li>
                 </ul>
@@ -326,7 +326,17 @@
 
     </nav>
 	
+<!-- <script type="text/javascript">
+function logout(){
+	$("#logout").click(function(){
+	        if(confirm("确定退出吗?")){
 
+	            $.cookie('username',null,{ expires: 30, path: '/' });
+	            window.location.reload();
+
+	        }
+	});
+</script> -->
 
 			
 		

@@ -153,7 +153,7 @@
             return this.optional(element) || (regulareMail.test(value));
         }, "请输入正确的邮箱地址");
         
-        $("#login").validate({
+        $("#user-info-form").validate({
             rules: {
                 realName: {
                     required: true,
@@ -167,7 +167,7 @@
                     required: true,
                     isMobileNumber: true
                 },
-                email: {
+                eMail: {
                 	required: true,
                 	iseMail: true
                 },
@@ -189,16 +189,18 @@
                     required: "请输入手机号码",
                    	isMobileNumber:"请输入正确的手机号码"
                 },
-                email: {
+                eMail: {
                 	required: "请输入邮箱",
                 	iseMail: "请输入正确的邮箱地址"
                 },
                 address: {
-                	required: "请输入地址"
+                	required: "请输入地址",
+                	rangelength:"长度必须在{0}到{1}之间"
+                	
                 }
                 
             },
-            errorElement: "em",
+            //errorElement: "em",
             /* 更改错误信息显示的位置 */
             errorPlacement: function (error, element) {
                  // Add the `help-block` class to the error element
